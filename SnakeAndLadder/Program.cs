@@ -17,40 +17,60 @@ namespace SnakeAndLadder
             const int NO_PLAY = 0;
             const int LADDER = 1;
             const int SNAKE = 2;
+            const int WINNING_POSITION = 100;
+
 
             //variables
-            int starPosition = 0;
             int position = 0;
-            
+            int noPlayPosition = 0;
+            int winningPosition = 0;
+            int count = 0;
+            //Random class
             Random random = new Random();
-            int dieOption = random.Next(0,2);
-            int dieRoll = random.Next(1,7);
-            Console.WriteLine("Random Number : {0}",dieRoll);
-            Console.WriteLine("Die Option : {0}", dieOption);
+
+            // random variable 
+
+            //Console.WriteLine("Random Number : {0}", dieRoll);
+            //Console.WriteLine("Die Option : {0}", dieOption);
+
+            while (position <= WINNING_POSITION) { 
+
+            int dieOption = random.Next(0, 2);
+            int dieRoll = random.Next(1, 7);
 
             switch (dieOption)
             {
                 case NO_PLAY:
-                    position = 0;
+                    noPlayPosition = position;
+                    Console.WriteLine(position);
                     break;
                 case LADDER:
-                    position += dieRoll;
-                    Console.WriteLine("Position moved to : {0}",position);
+                        if (position == WINNING_POSITION) {
+                            position = 100; 
+                        }
+                        else {
+                            position += dieRoll;
+                        }
+                    Console.WriteLine(position);
                     break;
                 case SNAKE:
                     position -= dieRoll;
-                    if(position < 0)
-                    {
-                        position = 0;
-                        Console.WriteLine("Position moved to : {0}", position);
-                        
-                    }
+                    Console.WriteLine(position);
                     break;
                 default:
-                    Console.WriteLine("Invalid move");
+                    Console.WriteLine("Error");
                     break;
-
             }
+                count++;
+
+        }
+            if (position == 100)
+            {
+                Console.WriteLine("Player 1 won ");
+                Console.WriteLine("No of Count : {0}", count);
+                Console.ReadLine();
+            }
+
 
             Console.ReadLine();
         }
