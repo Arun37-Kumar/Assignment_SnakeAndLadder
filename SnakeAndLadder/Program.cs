@@ -11,6 +11,9 @@ namespace SnakeAndLadder
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Snake and Ladder Game!");
+
+            int PLAYER_ONE = 1;
+            int starPosition = 0;
         }
     }
 }
